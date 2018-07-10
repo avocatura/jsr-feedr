@@ -57,6 +57,16 @@
   background: #fff;
 }
 
+body.loader {
+  background-image: url(../images/ajax_loader.gif);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+body.loader .container {
+  opacity: 0.5;
+}
+
 /* Header styles */
 header {
   background-color: #FE052C;
@@ -122,7 +132,7 @@ header #search input {
 }
 
 header #search.active input {
-  width: 160px;
+  width: 200px;
   padding: 8px 10px;
   visibility: visible;
 }
