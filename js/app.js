@@ -40,6 +40,7 @@ var callAPI = function(url) {
 	request.send();
 	request.onload = function() {
 	var x = JSON.parse(request.response);
+	console.log(request.response);
 	//Promise function to toggle body loader class when the API has loaded
 	var promiseApi = new Promise(function(resolve, reject) {
 	if (request.status === 200) {
@@ -71,7 +72,7 @@ var callAPI = function(url) {
 		var thumbnail = x.results[i].multimedia[0].url;
 		var impressionsValue = x.results[i].updated_date.substring(5,10);
 	}
-	//Select DOM elements and replace with API variables
+	//Select DOM elements and replace with API data variables
 	var articleTitle = $(articleContent[i]).find("h3")[0]; 
 	articleTitle.innerHTML = webTitle;	
 	var articleSubHeading = $(articleContent[i]).find("h6")[0];
@@ -91,7 +92,7 @@ var callAPI = function(url) {
 		console.log(url);
 		if ($("#clickSource").html() === "The Guardian") {
 			var webUrl = x.response.results[index].webUrl;
-			var description = x.response.results[index].blocks.requestedBodyBlocks["body:latest"][0].bodyTextSummary.substring(0,800);
+			var description = x.response.results[index].blocks.requestedBodyBlocks["body:latest"][0].bodyTextSummary.substring(0,1000) + "...";
 		} else if ($("#clickSource").html() === "USA Today") {
 			var webUrl = x.articles[index].url;
 			var description = x.articles[index].description; 
@@ -107,6 +108,7 @@ var callAPI = function(url) {
 	};
 };
 
+//Set default API
 callAPI(urlGuardian);
 
 //Close popUp when the X is clicked
